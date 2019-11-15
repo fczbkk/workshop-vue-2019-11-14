@@ -1,9 +1,6 @@
 <template>
-  <div class="home">
-    <h1>Homepage</h1>
-    <p>
-      <router-link :to="{name: 'categories'}">Go to categories page</router-link>
-    </p>
+  <div>
+    <h1>Category {{ $route.params.category_id }}</h1>
     <products-list :products-list="productsList" />
   </div>
 </template>
@@ -21,8 +18,13 @@
       }
     },
     mounted () {
-      fetch('http://localhost:3000/highlighted/')
+      fetch('http://localhost:3000/categories/' + this.$route.params.category_id)
         .then((response) => response.json())
         .then((data) => this.productsList = data);
     }
-  }</script>
+  }
+</script>
+
+<style scoped>
+
+</style>
